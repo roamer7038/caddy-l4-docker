@@ -1,0 +1,27 @@
+services:
+  caddy:
+    # image: ghcr.io/roamer7038/caddy-l4-docker
+    # local build
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: caddy-l4
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      # caddy-l4 module does not supported Caddyfile
+      # supported configuration is in YAML format/JSON format
+      - ./caddy.yaml:/etc/caddy/caddy.yaml:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command: run --config /etc/caddy/caddy.yaml --adapter yaml
+
+volumes:
+  caddy_data:
+  caddy_config:
+

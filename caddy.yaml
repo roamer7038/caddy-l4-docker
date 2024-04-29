@@ -1,0 +1,30 @@
+# The Caddyfile configuration in YAML format
+# For more information, refer to the official Caddy documentation:
+# https://caddyserver.com/docs/caddyfile
+
+apps:
+  # Default Caddy HTTP Server
+  http:
+    servers:
+      server:
+        listen: [":3000"]
+        routes:
+          # configure the following for web server
+          - handle:
+              - handler: file_server
+                root: "/usr/share/caddy"
+
+  # Caddy Layer4 Server
+  # https://caddyserver.com/docs/modules/layer4
+  layer4:
+    servers:
+      server:
+        listen: [":80"]
+        routes:
+          # Uncomment and configure the following for reverse proxy
+          - handle:
+              - handler: proxy
+                upstreams:
+                  # To specify the host machine localhost for upstream
+                  # - dial: ["host.docker.internal:3000"]
+                  - dial: ["localhost:3000"]
