@@ -1,10 +1,9 @@
 services:
   caddy:
-    # image: ghcr.io/roamer7038/caddy-l4-docker
-    # local build
-    build:
-      context: .
-      dockerfile: Dockerfile
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    image: ghcr.io/roamer7038/caddy-l4-docker:latest
     container_name: caddy-l4
     restart: unless-stopped
     ports:
@@ -24,4 +23,3 @@ services:
 volumes:
   caddy_data:
   caddy_config:
-
