@@ -88,6 +88,9 @@ apps:
 For more information, see the official documentation:
 [https://caddyserver.com/docs/modules/layer4](https://caddyserver.com/docs/modules/layer4)
 
+Example of use:
+- [livekit-meet-docker](https://github.com/roamer7038/livekit-meet-docker/blob/main/caddy.yaml)
+
 ## Build
 
 You can build the image yourself with the following command:
